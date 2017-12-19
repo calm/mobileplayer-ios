@@ -209,10 +209,6 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
     let singleTapRecognizer = UITapGestureRecognizer { [weak self] in self?.handleContentTap() }
     singleTapRecognizer.numberOfTapsRequired = 1
     controlsView.addGestureRecognizer(singleTapRecognizer)
-    let doubleTapRecognizer = UITapGestureRecognizer { [weak self] in self?.handleContentDoubleTap() }
-    doubleTapRecognizer.numberOfTapsRequired = 2
-    controlsView.addGestureRecognizer(doubleTapRecognizer)
-    singleTapRecognizer.require(toFail: doubleTapRecognizer)
   }
 
   // MARK: View Controller Lifecycle
@@ -337,13 +333,6 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
   /// Makes playback content fill player's view.
   public func fillVideo() {
     moviePlayer.scalingMode = .aspectFill
-  }
-
-  /// Makes playback content switch between fill/fit modes when content area is double tapped. Overriding this method
-  /// is recommended if you want to change this behavior.
-  public func handleContentDoubleTap() {
-    // TODO: videoScalingMode property and enum.
-    moviePlayer.scalingMode != .aspectFill ? fillVideo() : fitVideo()
   }
 
   // MARK: Social
